@@ -4,7 +4,8 @@ const App = {
 
     async init() {
         try {
-            const response = await fetch('data.json');
+            // Version 2.0 added here to force phones to download the newest menu!
+            const response = await fetch('data.json?v=2.0');
             this.data = await response.json();
             this.updateCartBadge();
             this.route();
@@ -22,7 +23,7 @@ const App = {
         } else if (path.includes('shop.html')) {
             this.renderShop('shop-catalog-grid');
         } else {
-            this.renderShop('home-menu-grid'); 
+            this.renderShop('home-menu-grid');
         }
     },
 
@@ -70,7 +71,6 @@ const App = {
             document.getElementById('p-base-price').textContent = `${this.data.config.currencySymbol}${product.basePrice} per piece`;
         }
 
-        // DYNAMIC ADD-ON PRICING: Cupcakes are always ₹5. Cakes use the database price.
         document.getElementById('opt-addons').innerHTML = product.allowedAddons.map(addonId => {
             const a = this.data.addonsDB[addonId];
             const addonPrice = product.type === 'cupcake' ? 5 : a.price;
