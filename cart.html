@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Manisha's Bakehouse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header-fixed">
+        <a href="index.html" class="logo">Manisha's Bakehouse</a>
+        <div class="nav-actions"><a href="shop.html">Shop Menu</a></div>
+    </header>
+
+    <main class="container cart-layout">
+        <h1 class="title-xl" style="text-align: center; margin-bottom: 3rem;">Your Shopping Bag</h1>
+        
+        <div id="cart-items"></div>
+
+        <div id="cart-summary" class="live-bill" style="margin-top: 3rem;">
+            <div class="bill-row total" style="border: none; padding: 0;">
+                <span>Grand Total</span><span id="cart-grand-total">₹0</span>
+            </div>
+            <p style="font-size: 0.8rem; color: #666; margin-bottom: 2rem;">Shipping and taxes calculated via WhatsApp confirmation.</p>
+            <button id="checkout-btn" class="btn"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</button>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

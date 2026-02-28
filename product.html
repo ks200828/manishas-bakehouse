@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Manisha's Bakehouse</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header-fixed">
+        <a href="index.html" class="logo">Manisha's Bakehouse</a>
+        <div class="nav-actions">
+            <a href="shop.html">Shop Menu</a>
+            <a href="cart.html">Bag (<span class="cart-badge">0</span>)</a>
+        </div>
+    </header>
+
+    <main class="container pdp-layout">
+        <div class="pdp-image"><img id="p-image" src="" alt="Loading..."></div>
+        <div class="pdp-details">
+            <h1 id="p-name">Loading...</h1>
+            <p id="p-base-price" class="title-xl">₹0</p>
+            <p id="p-desc" style="color: #666; margin-bottom: 2rem;"></p>
+
+            <form id="product-form">
+                <span class="section-label">1. Base Formulation</span>
+                <div id="opt-types" class="options-grid"></div>
+
+                <div id="weight-section">
+                    <span class="section-label">2. Select Weight (Pounds)</span>
+                    <div id="opt-weights" class="options-grid"></div>
+                </div>
+
+                <span class="section-label">3. Artisan Add-ons</span>
+                <div id="opt-addons" class="options-grid"></div>
+
+                <span class="section-label">Quantity</span>
+                <div class="qty-control">
+                    <button type="button" id="qty-minus">−</button>
+                    <input type="number" id="qty-input" value="1" min="1" readonly>
+                    <button type="button" id="qty-plus">+</button>
+                </div>
+
+                <div class="live-bill">
+                    <div class="bill-row"><span>Cake + Weight Option</span><span id="bill-cake">₹0</span></div>
+                    <div class="bill-row"><span>Dry Fruit Add-ons</span><span id="bill-addons">₹0</span></div>
+                    <div class="bill-row total"><span>Total Estimate</span><span id="bill-total">₹0</span></div>
+                </div>
+
+                <button type="submit" class="btn">Add to Bag</button>
+                <a href="https://wa.me/918603546999" target="_blank" class="btn" style="margin-top: 1rem; background: transparent; border: 1px solid var(--clr-cocoa); color: var(--clr-cocoa);">Ask a Question on WhatsApp</a>
+            </form>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
