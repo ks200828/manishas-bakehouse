@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Product | Manisha's Bakehouse</title>
-    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <link rel="stylesheet" href="css/style.css?v=5.0">
 </head>
 <body>
     <header class="header-fixed">
@@ -18,7 +18,7 @@
         </div>
     </header>
 
-    <main class="container pdp-layout">
+    <main class="container pdp-layout reveal-up">
         <div class="pdp-image"><img id="p-image" src="" alt="Loading..."></div>
         <div class="pdp-details">
             <h1 id="p-name">Loading...</h1>
@@ -37,6 +37,22 @@
                 <span class="section-label">3. Artisan Add-ons</span>
                 <div id="opt-addons" class="options-grid"></div>
 
+                <div id="cake-customizations" style="display: none;">
+                    <span class="section-label">4. Personalization</span>
+                    <div class="form-group" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        <input type="text" id="cake-message" name="cake-message" placeholder=" " maxlength="40">
+                        <label for="cake-message">Message on Cake (e.g. Happy Birthday)</label>
+                    </div>
+                    
+                    <span class="section-label" style="margin-top: 1.5rem;">5. Occasion Tag</span>
+                    <div id="opt-occasion" class="options-grid" style="margin-bottom: 2rem;">
+                        <label class="radio-btn"><input type="radio" name="occasion" value="None" checked><span>None</span></label>
+                        <label class="radio-btn"><input type="radio" name="occasion" value="Birthday"><span>Birthday</span></label>
+                        <label class="radio-btn"><input type="radio" name="occasion" value="Anniversary"><span>Anniversary</span></label>
+                        <label class="radio-btn"><input type="radio" name="occasion" value="Other"><span>Other</span></label>
+                    </div>
+                </div>
+
                 <span class="section-label">Quantity</span>
                 <div class="qty-control">
                     <button type="button" id="qty-minus">−</button>
@@ -51,11 +67,10 @@
                 </div>
 
                 <button type="submit" class="btn">Add to Bag</button>
-                <a href="https://wa.me/918603546999" target="_blank" class="btn" style="margin-top: 1rem; background: transparent; border: 1px solid var(--clr-cocoa); color: var(--clr-cocoa);">Ask a Question on WhatsApp</a>
             </form>
         </div>
     </main>
 
-    <script src="js/app.js?v=2.0"></script>
+    <script src="js/app.js?v=5.0"></script>
 </body>
 </html>

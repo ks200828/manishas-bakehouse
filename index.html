@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
     <title>Manisha's Bakehouse | Artisan European Bakery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <link rel="stylesheet" href="css/style.css?v=4.0">
 </head>
 <body>
     <header class="header-fixed">
@@ -22,18 +20,22 @@
     </header>
 
     <main>
-        <section class="hero" style="background-image: linear-gradient(rgba(58, 42, 33, 0.4), rgba(58, 42, 33, 0.7)), url('assets/images/hero.jpeg');">
+        <section class="hero">
+            <div class="hero-bg"></div>
             <div class="hero-content">
                 <p class="hero-subtitle">Artisan Bakery in Hazaribagh</p>
                 <h1 class="hero-title">Manisha's Bakehouse</h1>
-                <p class="hero-tagline" style="font-size: 1.2rem; margin-bottom: 2rem;">Crafting European elegance in every bite.</p>
-                <a href="shop.html" class="btn btn-outline-hero">Enter Boutique</a>
+                <p class="hero-tagline" style="font-size: 1.2rem; margin-bottom: 2.5rem;">Crafting European elegance in every bite.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#cakes" class="btn btn-outline-hero">Signature Cakes</a>
+                    <a href="#cupcakes" class="btn btn-outline-hero">Artisan Cupcakes</a>
+                </div>
             </div>
         </section>
 
-        <section class="panel container" id="story">
+        <section class="panel container reveal-up" id="story">
             <div class="story-grid">
-                <div class="img-wrap"><img src="assets/images/story.jpeg" alt="Manisha preparing dough"></div>
+                <div class="img-wrap"><img src="assets/images/story.jpeg" alt="Manisha preparing dough" loading="lazy"></div>
                 <div>
                     <span class="section-label">Our Heritage</span>
                     <h2 class="title-xl">The Philosophy of Slow Baking</h2>
@@ -42,41 +44,51 @@
             </div>
         </section>
 
-        <section class="panel container">
+        <section class="panel container reveal-up" id="cakes">
             <div style="text-align: center; margin-bottom: 4rem;">
-                <span class="section-label">The Collection</span>
-                <h2 class="title-xl">Signature Offerings</h2>
+                <span class="section-label">Grand Masterpieces</span>
+                <h2 class="title-xl">Signature Cakes</h2>
+                <div class="gold-line"></div>
             </div>
-            <div id="home-menu-grid" class="product-grid"></div>
+            <div id="cakes-grid" class="product-grid"></div>
         </section>
 
-        <section class="panel container" style="background-color: var(--clr-blush); padding: 4rem;">
+        <section class="panel container reveal-up" id="cupcakes" style="background-color: var(--clr-blush);">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-label">Delicate Bites</span>
+                <h2 class="title-xl">Artisan Cupcakes & Brownies</h2>
+                <div class="gold-line"></div>
+            </div>
+            <div id="cupcakes-grid" class="product-grid"></div>
+        </section>
+
+        <section class="panel container reveal-up" style="padding: 4rem;">
             <div style="text-align: center; margin-bottom: 2rem;">
                 <span class="section-label">A Glimpse Inside</span>
                 <h2 class="title-xl">The Art of Baking</h2>
             </div>
-            <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 4px;">
+            <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                 <source src="assets/videos/bakery-film.mp4" type="video/mp4">
             </video>
         </section>
 
-        <section class="panel container" id="gallery">
+        <section class="panel container reveal-up" id="gallery">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <span class="section-label">Visual Delights</span>
                 <h2 class="title-xl">The Gallery</h2>
             </div>
             <div class="premium-gallery">
-                <div class="item-wide img-wrap"><img src="assets/images/gallery1.jpeg" alt="Gallery"></div>
-                <div class="item-tall img-wrap"><img src="assets/images/gallery2.jpeg" alt="Gallery"></div>
-                <div class="item-square img-wrap"><img src="assets/images/gallery3.jpeg" alt="Gallery"></div>
-                <div class="item-square img-wrap"><img src="assets/images/gallery4.jpeg" alt="Gallery"></div>
-                <div class="item-square img-wrap"><img src="assets/images/gallery5.jpeg" alt="Gallery"></div>
-                <div class="item-tall img-wrap"><img src="assets/images/gallery6.jpeg" alt="Gallery"></div>
-                <div class="item-wide img-wrap"><img src="assets/images/gallery7.jpeg" alt="Gallery"></div>
+                <div class="item-wide img-wrap"><img src="assets/images/gallery1.jpeg" alt="Gallery" loading="lazy"></div>
+                <div class="item-tall img-wrap"><img src="assets/images/gallery2.jpeg" alt="Gallery" loading="lazy"></div>
+                <div class="item-square img-wrap"><img src="assets/images/gallery3.jpeg" alt="Gallery" loading="lazy"></div>
+                <div class="item-square img-wrap"><img src="assets/images/gallery4.jpeg" alt="Gallery" loading="lazy"></div>
+                <div class="item-square img-wrap"><img src="assets/images/gallery5.jpeg" alt="Gallery" loading="lazy"></div>
+                <div class="item-tall img-wrap"><img src="assets/images/gallery6.jpeg" alt="Gallery" loading="lazy"></div>
+                <div class="item-wide img-wrap"><img src="assets/images/gallery7.jpeg" alt="Gallery" loading="lazy"></div>
             </div>
         </section>
 
-        <section class="panel container" id="contact">
+        <section class="panel container reveal-up" id="contact">
             <div class="contact-grid">
                 <div>
                     <span class="section-label">Get in Touch</span>
@@ -85,17 +97,31 @@
                     <p style="margin-top:1rem;"><strong><i class="fa-regular fa-clock"></i> Hours</strong><br>Monday - Sunday | 09:00 AM - 09:00 PM</p>
                     <p style="margin-top:1rem;"><strong><i class="fa-solid fa-phone"></i> Phone</strong><br>+91 8603546999</p>
                 </div>
-                <div style="background-color: var(--clr-blush); padding: 3rem; border-radius: 4px;">
+                <div style="background-color: var(--clr-blush); padding: 3rem; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                     <form action="https://formspree.io/f/xbdapnny" method="POST" class="contact-form">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" placeholder=" " required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" placeholder=" " required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" id="message" rows="5" placeholder=" " required></textarea>
+                            <label for="message">How can we help you?</label>
+                        </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
-    <script src="js/app.js?v=2.0"></script>
+
+    <a href="https://wa.me/918603546999" target="_blank" class="fab-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/app.js?v=4.0"></script>
 </body>
 </html>

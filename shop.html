@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Shop | Manisha's Bakehouse</title>
-    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <link rel="stylesheet" href="css/style.css?v=4.0">
 </head>
 <body>
     <header class="header-fixed">
@@ -17,11 +17,26 @@
         </div>
     </header>
 
-    <main class="container">
-        <h1 class="title-xl" style="text-align: center; margin-bottom: 4rem;">Artisan Selections</h1>
-        <div id="shop-catalog-grid" class="product-grid"></div>
+    <main>
+        <section class="panel container reveal-up" style="padding-top: 2rem;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-label">Grand Masterpieces</span>
+                <h1 class="title-xl">Signature Cakes</h1>
+                <div class="gold-line"></div>
+            </div>
+            <div id="cakes-grid" class="product-grid"></div>
+        </section>
+
+        <section class="panel container reveal-up" style="background-color: var(--clr-blush);">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-label">Delicate Bites</span>
+                <h2 class="title-xl">Artisan Cupcakes & Brownies</h2>
+                <div class="gold-line"></div>
+            </div>
+            <div id="cupcakes-grid" class="product-grid"></div>
+        </section>
     </main>
 
-    <script src="js/app.js?v=2.0"></script>
+    <script src="js/app.js?v=4.0"></script>
 </body>
 </html>

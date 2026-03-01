@@ -4,14 +4,34 @@ const App = {
 
     async init() {
         try {
-            // Version 2.0 added here to force phones to download the newest menu!
-            const response = await fetch('data.json?v=2.0');
+            const response = await fetch('data.json?v=5.0');
             this.data = await response.json();
             this.updateCartBadge();
             this.route();
+            this.initScrollAnimations();
         } catch (error) {
             console.error("Error loading database:", error);
         }
+    },
+
+    initScrollAnimations() {
+        const header = document.querySelector('.header-fixed');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        setTimeout(() => {
+            document.querySelectorAll('.reveal-up, .product-card').forEach(el => observer.observe(el));
+        }, 100);
     },
 
     route() {
@@ -28,23 +48,41 @@ const App = {
     },
 
     renderShop(containerId) {
-        const grid = document.getElementById(containerId);
-        if (!grid) return;
-        
-        grid.innerHTML = this.data.products.map(p => {
-            const displayPrice = p.type === 'cake' ? p.weights[0].price : p.basePrice;
-            const priceLabel = p.type === 'cake' ? 'onwards' : 'per piece (Min 6)';
-            return `
-            <a href="product.html?id=${p.id}" class="product-card">
-                <div class="img-wrap"><img src="${p.image}" alt="${p.name}"></div>
-                <div class="card-info">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">${p.name}</h3>
-                    <p style="color: var(--clr-gold); font-family: var(--font-heading); font-size: 1.1rem;">
-                        ${this.data.config.currencySymbol}${displayPrice} ${priceLabel}
-                    </p>
-                </div>
-            </a>
-        `}).join('');
+        if (containerId === 'home-menu-grid') {
+            const cakesGrid = document.getElementById('cakes-grid');
+            const cupcakesGrid = document.getElementById('cupcakes-grid');
+
+            const renderHTML = (products) => products.map((p, index) => {
+                const displayPrice = p.type === 'cake' ? p.weights[0].price : p.basePrice;
+                const priceLabel = p.type === 'cake' ? 'onwards' : 'per piece (Min 6)';
+                return `
+                <a href="product.html?id=${p.id}" class="product-card" style="transition-delay: ${index * 0.1}s">
+                    <div class="img-wrap"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+                    <div class="card-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <p class="product-price">${this.data.config.currencySymbol}${displayPrice} <span class="price-label">${priceLabel}</span></p>
+                    </div>
+                </a>
+            `}).join('');
+
+            if (cakesGrid) cakesGrid.innerHTML = renderHTML(this.data.products.filter(p => p.type === 'cake'));
+            if (cupcakesGrid) cupcakesGrid.innerHTML = renderHTML(this.data.products.filter(p => p.type === 'cupcake'));
+        } else {
+            const grid = document.getElementById(containerId);
+            if (!grid) return;
+            grid.innerHTML = this.data.products.map((p, index) => {
+                const displayPrice = p.type === 'cake' ? p.weights[0].price : p.basePrice;
+                const priceLabel = p.type === 'cake' ? 'onwards' : 'per piece (Min 6)';
+                return `
+                <a href="product.html?id=${p.id}" class="product-card" style="transition-delay: ${index * 0.1}s">
+                    <div class="img-wrap"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+                    <div class="card-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <p class="product-price">${this.data.config.currencySymbol}${displayPrice} <span class="price-label">${priceLabel}</span></p>
+                    </div>
+                </a>
+            `}).join('');
+        }
     },
 
     renderProductDetail() {
@@ -61,14 +99,18 @@ const App = {
         `).join('');
 
         const weightSection = document.getElementById('weight-section');
+        const cakeCustoms = document.getElementById('cake-customizations');
+        
         if (product.type === 'cake') {
             document.getElementById('p-base-price').style.display = 'none';
             document.getElementById('opt-weights').innerHTML = product.weights.map((w, i) => `
                 <label class="radio-btn"><input type="radio" name="weight" value="${w.label}" data-price="${w.price}" ${i===0?'checked':''}><span>${w.label} (${this.data.config.currencySymbol}${w.price})</span></label>
             `).join('');
+            if (cakeCustoms) cakeCustoms.style.display = 'block'; // Show Message/Tag for cakes
         } else {
             weightSection.style.display = 'none';
             document.getElementById('p-base-price').textContent = `${this.data.config.currencySymbol}${product.basePrice} per piece`;
+            if (cakeCustoms) cakeCustoms.style.display = 'none'; // Hide Message/Tag for cupcakes
         }
 
         document.getElementById('opt-addons').innerHTML = product.allowedAddons.map(addonId => {
@@ -126,6 +168,14 @@ const App = {
         const baseItemPrice = product.type === 'cake' ? parseInt(weightEl.dataset.price) : product.basePrice;
         const weightLabel = product.type === 'cake' ? weightEl.value : "Standard Portion";
         
+        // Grab Custom Message and Tag (Only if it's a cake)
+        let cakeMessage = "";
+        let occasion = "None";
+        if (product.type === 'cake') {
+            cakeMessage = document.getElementById('cake-message').value.trim();
+            occasion = form.querySelector('input[name="occasion"]:checked').value;
+        }
+        
         const addons = [];
         let addonsPricePerItem = 0;
         form.querySelectorAll('input[name="addon"]:checked').forEach(cb => {
@@ -142,6 +192,8 @@ const App = {
             basePriceCombined: baseItemPrice,
             addons: addons,
             addonsPrice: addonsPricePerItem,
+            cakeMessage: cakeMessage,
+            occasion: occasion,
             qty: qty,
             total: (baseItemPrice + addonsPricePerItem) * qty,
             image: product.image
@@ -164,12 +216,14 @@ const App = {
         container.innerHTML = this.cart.map((item, index) => {
             grandTotal += item.total;
             return `
-            <div class="cart-item">
+            <div class="cart-item reveal-up" style="transition-delay: ${index * 0.1}s">
                 <img src="${item.image}" alt="${item.name}">
                 <div class="ci-details">
                     <h4>${item.name}</h4>
                     <p class="ci-meta">${item.baseFormulation} ${item.productType === 'cake' ? `| ${item.weight}` : ''}</p>
-                    ${item.addons.length ? `<p class="ci-meta">Add-ons: ${item.addons.join(', ')}</p>` : ''}
+                    ${item.cakeMessage ? `<p class="ci-meta" style="color: var(--clr-cocoa); font-style: italic; margin-top: 0.2rem;">✍️ "${item.cakeMessage}"</p>` : ''}
+                    ${item.occasion && item.occasion !== 'None' ? `<p class="ci-meta" style="color: var(--clr-gold); margin-top: 0.2rem;">🎉 Tag: ${item.occasion}</p>` : ''}
+                    ${item.addons.length ? `<p class="ci-meta" style="margin-top: 0.2rem;">Add-ons: ${item.addons.join(', ')}</p>` : ''}
                     <p class="ci-price">${this.data.config.currencySymbol}${item.total} (Qty: ${item.qty})</p>
                 </div>
                 <button class="remove-btn" onclick="App.removeItem(${index})"><i class="fa-solid fa-xmark"></i></button>
@@ -189,7 +243,14 @@ const App = {
         let msg = `Hello Manisha's Bakehouse 👋\n\nI would like to place an artisan order:\n\n`;
         this.cart.forEach((item, i) => {
             msg += `*Item ${i + 1}:*\n🍰 Product: ${item.name}\n🍞 Base: ${item.baseFormulation}\n`;
-            if (item.productType === 'cake') msg += `⚖️ Weight: ${item.weight}\n`;
+            
+            // Add Cake Specifics
+            if (item.productType === 'cake') {
+                msg += `⚖️ Weight: ${item.weight}\n`;
+                if (item.cakeMessage) msg += `✍️ Message on Cake: "${item.cakeMessage}"\n`;
+                if (item.occasion && item.occasion !== 'None') msg += `🎉 Occasion Tag: ${item.occasion}\n`;
+            }
+            
             if (item.addons.length) msg += `🥜 Add-ons:\n- ${item.addons.join('\n- ')}\n`;
             msg += `🔢 Quantity: ${item.qty}\n💰 Price Details:\n- Base Price: ${this.data.config.currencySymbol}${item.basePriceCombined}\n- Add-ons: ${this.data.config.currencySymbol}${item.addonsPrice}\n----------------------\n`;
         });
