@@ -9,13 +9,11 @@
     "raisins": { "label": "Golden Raisins", "price": 5 },
     "pistachio": { "label": "Persian Pistachios", "price": 15 },
     "walnut": { "label": "Crushed Walnuts", "price": 15 },
-    "choc_chip": { "label": "Belgian Chocolate Chips", "price": 10 },
-    "white_choc_chip": { "label": "White Chocolate Chips", "price": 10 },
-    "tutti_frutti": { "label": "Candied Tutti Frutti", "price": 5 },
-    "sunflower_seeds": { "label": "Toasted Sunflower Seeds", "price": 10 },
-    "pumpkin_seeds": { "label": "Roasted Pumpkin Seeds", "price": 15 },
-    "chia_seeds": { "label": "Organic Chia Seeds", "price": 10 },
-    "flax_seeds": { "label": "Roasted Flax Seeds", "price": 5 }
+    "choc_chip": { "label": "Chocolate Chips", "price": 10 },
+    "white_choc_chip": { "label": "White Choco Chips", "price": 10 },
+    "tutti_frutti": { "label": "Tutti Frutti", "price": 5 },
+    "sunflower_seeds": { "label": "Sunflower Seeds", "price": 10 },
+    "pumpkin_seeds": { "label": "Pumpkin Seeds", "price": 15 }
   },
   "options": {
     "types": ["Atta Cake", "Maida Cake"]
@@ -24,34 +22,34 @@
     {
       "id": "c1",
       "type": "cake",
-      "name": "Vanilla Confetti Royale",
-      "desc": "A symphony of vibrant colors and classic European flavors. Handcrafted with pure Madagascan vanilla bean paste and gently folded with jewel-like candied fruits. Its tender, buttery crumb makes it the quintessential centerpiece for joyous birthdays, elegant celebrations, and lively afternoon teas.",
+      "name": "Vanilla Tutti Frutti Cake",
+      "desc": "A classic, soft vanilla sponge cake baked perfectly and loaded with colorful candied tutti frutti. A simple, nostalgic favorite that is perfect for birthdays, tea time, and sharing with family.",
       "image": "assets/images/product-vanilla-cake.jpeg",
       "weights": [
         { "label": "1 Pound", "price": 350 },
         { "label": "2 Pound", "price": 700 },
         { "label": "3 Pound", "price": 1050 }
       ],
-      "allowedAddons": ["cashew", "almond", "raisins", "pistachio", "walnut", "choc_chip", "white_choc_chip", "tutti_frutti", "sunflower_seeds", "pumpkin_seeds", "chia_seeds", "flax_seeds"]
+      "allowedAddons": ["cashew", "almond", "raisins", "pistachio", "walnut", "choc_chip", "white_choc_chip", "tutti_frutti", "sunflower_seeds", "pumpkin_seeds"]
     },
     {
       "id": "c2",
       "type": "cake",
-      "name": "Classic Viennese Marble Torte",
-      "desc": "An artisanal masterpiece weaving together rich, dark cocoa and delicate vanilla sponge. Baked slowly to achieve a flawless marble intertwine, this torte offers a sophisticated balance of flavors. A deeply comforting indulgence perfectly paired with a strong espresso.",
+      "name": "Classic Marble Cake",
+      "desc": "The best of both worlds. Rich chocolate and delicate vanilla batters swirled together and baked into a soft, comforting marble cake. Perfect with a hot cup of tea or coffee.",
       "image": "assets/images/product-marble-cake.jpeg",
       "weights": [
         { "label": "1 Pound", "price": 400 },
         { "label": "2 Pound", "price": 800 },
         { "label": "3 Pound", "price": 1200 }
       ],
-      "allowedAddons": ["cashew", "almond", "raisins", "pistachio", "walnut", "choc_chip", "white_choc_chip", "tutti_frutti", "sunflower_seeds", "pumpkin_seeds", "chia_seeds", "flax_seeds"]
+      "allowedAddons": ["cashew", "almond", "raisins", "pistachio", "walnut", "choc_chip", "white_choc_chip", "tutti_frutti", "sunflower_seeds", "pumpkin_seeds"]
     },
     {
       "id": "c3",
       "type": "cake",
-      "name": "Belgian Cocoa & Walnut Torte",
-      "desc": "Deeply intense and luxuriously earthy. Crafted with single-origin Belgian cocoa powder and studded with toasted walnuts, this cake boasts a dense, fudgy texture that melts instantly on the palate. The ultimate luxury gifting option for true chocolate connoisseurs.",
+      "name": "Chocolate Walnut Cake",
+      "desc": "A deeply rich and fudgy chocolate cake packed with crunchy, toasted walnuts. Made with high-quality cocoa for a pure chocolate flavor that melts in your mouth.",
       "image": "assets/images/product-choc-walnut.jpeg",
       "weights": [
         { "label": "1 Pound", "price": 400 },
@@ -63,8 +61,8 @@
     {
       "id": "cc1",
       "type": "cupcake",
-      "name": "Madagascar Vanilla Petit Cupcake",
-      "desc": "A delicate, airy cloud of authentic vanilla sponge topped with a whisper of sweetness. These petit delights are baked fresh daily, capturing the essence of a Parisian morning.",
+      "name": "Classic Vanilla Cupcake",
+      "desc": "A soft, light, and airy vanilla cupcake made with real ingredients. Simple, sweet, and freshly baked every day.",
       "image": "assets/images/product-cupcake-vanilla.jpeg",
       "basePrice": 30,
       "minQty": 6,
@@ -73,8 +71,8 @@
     {
       "id": "cc2",
       "type": "cupcake",
-      "name": "Belgian Chocolate Chip Cupcake",
-      "desc": "Rich, cocoa-infused sponge generously studded with premium dark chocolate morsels. Every bite offers a satisfying contrast of soft cake and melting chocolate drops.",
+      "name": "Chocolate Chip Cupcake",
+      "desc": "A rich chocolate sponge generously loaded with premium chocolate chips. Every bite is filled with a delicious mix of soft cake and melting chocolate.",
       "image": "assets/images/product-cupcake-choc.jpeg",
       "basePrice": 40,
       "minQty": 6,
@@ -83,8 +81,8 @@
     {
       "id": "cc3",
       "type": "cupcake",
-      "name": "Velvet Belgian Chocolate Ganache Cupcake",
-      "desc": "A deeply indulgent, moist chocolate sponge crowned with a rich, silky Belgian chocolate ganache. This elegant dessert boasts a profound cocoa flavor that melts effortlessly on the palate, making it a flawless centerpiece for premium celebrations.",
+      "name": "Chocolate Ganache Cupcake",
+      "desc": "A beautifully moist chocolate cupcake topped with a thick, rich layer of smooth chocolate ganache. A true treat for chocolate lovers.",
       "image": "assets/images/product-cupcake-ganache.jpeg",
       "basePrice": 40,
       "minQty": 6,
@@ -93,8 +91,8 @@
     {
       "id": "cc4",
       "type": "cupcake",
-      "name": "Golden Pineapple Crème Cupcake",
-      "desc": "A light, tropical masterpiece featuring a soft vanilla sponge with a hidden core of vibrant pineapple filling. Topped with a fresh, airy pineapple crème frosting, this cupcake offers a perfectly balanced sweetness.",
+      "name": "Fresh Pineapple Cupcake",
+      "desc": "A soft vanilla sponge filled with real, tangy pineapple filling and topped with a light pineapple cream. A fresh and fruity favorite.",
       "image": "assets/images/product-cupcake-pineapple.jpeg",
       "basePrice": 40,
       "minQty": 6,
@@ -103,8 +101,8 @@
     {
       "id": "cc5",
       "type": "cupcake",
-      "name": "Chocolate Strawberry Crème Delight",
-      "desc": "A breathtaking pairing of a rich, dark chocolate sponge and a smooth, vibrant strawberry cream filling. The balanced interplay of deep cocoa and bright berry flavors creates a sophisticated, multi-layered tasting experience.",
+      "name": "Chocolate Strawberry Cupcake",
+      "desc": "A delicious pairing of dark chocolate cake and smooth, sweet strawberry cream. A perfectly balanced flavor for any celebration.",
       "image": "assets/images/product-cupcake-strawberry.jpeg",
       "basePrice": 50,
       "minQty": 6,
@@ -113,8 +111,8 @@
     {
       "id": "cc6",
       "type": "cupcake",
-      "name": "Signature Molten Choco Lava Cake",
-      "desc": "A masterful creation featuring a delicate, dark cocoa sponge that gives way to a warm, cascading center of liquid Belgian chocolate. Baked to absolute perfection, this molten delight offers an unforgettable textural contrast. Best enjoyed warm.",
+      "name": "Choco Lava Cake",
+      "desc": "A warm, soft chocolate cake with a rich, gooey, melted chocolate center that flows out when you cut into it. Best served warm!",
       "image": "assets/images/product-cupcake-lava.jpeg",
       "basePrice": 40,
       "minQty": 6,
@@ -123,8 +121,8 @@
     {
       "id": "cc7",
       "type": "cupcake",
-      "name": "Decadent Molten Lava Ganache Cake",
-      "desc": "An opulent upgrade to the classic lava cake. Breaking the soft, premium cocoa crumb reveals a rush of warm, molten chocolate, beautifully crowned with a thick, hand-whipped dark chocolate ganache. A double dose of chocolate luxury.",
+      "name": "Choco Lava Ganache Cake",
+      "desc": "The ultimate chocolate indulgence. A warm molten lava cake topped with an extra layer of thick, rich chocolate ganache.",
       "image": "assets/images/product-cupcake-lavaganache.jpeg",
       "basePrice": 50,
       "minQty": 6,
@@ -133,8 +131,8 @@
     {
       "id": "cc8",
       "type": "cupcake",
-      "name": "Saffron Milk Cloud Cupcake",
-      "desc": "An opulent fusion of European baking techniques and royal Indian aromatics. Infused with pure saffron strands and rich milk solids, this cupcake offers a delicate, fragrant crumb reminiscent of authentic Rasmalai.",
+      "name": "Rasmalai Cupcake",
+      "desc": "A fusion of traditional Indian sweets and classic baking. A soft saffron and cardamom infused cake that tastes just like rich, creamy Rasmalai.",
       "image": "assets/images/product-cupcake-rasmalai.jpeg",
       "basePrice": 50,
       "minQty": 6,
@@ -143,8 +141,8 @@
     {
       "id": "cc9",
       "type": "cupcake",
-      "name": "Fudgy European Brownie",
-      "desc": "Exceptionally dense, crackly on the top, and unapologetically rich in the center. Hand-mixed with high-fat European butter and premium cocoa to create the ultimate textural masterpiece for dessert purists.",
+      "name": "Fudgy Chocolate Brownie",
+      "desc": "A dense, rich, and incredibly fudgy chocolate brownie with a perfect crinkly top. Made with real butter and premium cocoa.",
       "image": "assets/images/product-brownie.jpeg",
       "basePrice": 40,
       "minQty": 6,

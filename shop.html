@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (!window.location.search.includes('v=7.0')) {
+            const separator = window.location.search ? '&' : '?';
+            window.location.replace(window.location.href.split('#')[0] + separator + 'v=7.0');
+        }
+    </script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Shop | Manisha's Bakehouse</title>
-    <link rel="stylesheet" href="css/style.css?v=4.0">
+    <link rel="stylesheet" href="css/style.css?v=7.0">
 </head>
 <body>
     <header class="header-fixed">
@@ -37,6 +43,6 @@
         </section>
     </main>
 
-    <script src="js/app.js?v=4.0"></script>
+    <script src="js/app.js?v=7.0"></script>
 </body>
 </html>

@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (!window.location.search.includes('v=7.0')) {
+            const separator = window.location.search ? '&' : '?';
+            window.location.replace(window.location.href.split('#')[0] + separator + 'v=7.0');
+        }
+    </script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Product | Manisha's Bakehouse</title>
-    <link rel="stylesheet" href="css/style.css?v=5.0">
+    <link rel="stylesheet" href="css/style.css?v=7.0">
 </head>
 <body>
     <header class="header-fixed">
@@ -34,8 +40,13 @@
                     <div id="opt-weights" class="options-grid"></div>
                 </div>
 
-                <span class="section-label">3. Artisan Add-ons</span>
+                <span class="section-label">3. Extra Toppings</span>
                 <div id="opt-addons" class="options-grid"></div>
+
+                <div class="form-group" style="margin-top: 1rem; margin-bottom: 2rem;">
+                    <input type="text" id="special-instructions" name="special-instructions" placeholder=" ">
+                    <label for="special-instructions">Special Instructions (e.g., No seeds, add extra chocolate)</label>
+                </div>
 
                 <div id="cake-customizations" style="display: none;">
                     <span class="section-label">4. Personalization</span>
@@ -62,7 +73,7 @@
 
                 <div class="live-bill">
                     <div class="bill-row"><span>Cake + Weight Option</span><span id="bill-cake">₹0</span></div>
-                    <div class="bill-row"><span>Dry Fruit Add-ons</span><span id="bill-addons">₹0</span></div>
+                    <div class="bill-row"><span>Extra Toppings</span><span id="bill-addons">₹0</span></div>
                     <div class="bill-row total"><span>Total Estimate</span><span id="bill-total">₹0</span></div>
                 </div>
 
@@ -71,6 +82,6 @@
         </div>
     </main>
 
-    <script src="js/app.js?v=5.0"></script>
+    <script src="js/app.js?v=7.0"></script>
 </body>
 </html>

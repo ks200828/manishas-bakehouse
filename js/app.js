@@ -4,7 +4,7 @@ const App = {
 
     async init() {
         try {
-            const response = await fetch('data.json?v=5.0');
+            const response = await fetch('data.json?v=7.0');
             this.data = await response.json();
             this.updateCartBadge();
             this.route();
@@ -106,11 +106,11 @@ const App = {
             document.getElementById('opt-weights').innerHTML = product.weights.map((w, i) => `
                 <label class="radio-btn"><input type="radio" name="weight" value="${w.label}" data-price="${w.price}" ${i===0?'checked':''}><span>${w.label} (${this.data.config.currencySymbol}${w.price})</span></label>
             `).join('');
-            if (cakeCustoms) cakeCustoms.style.display = 'block'; // Show Message/Tag for cakes
+            if (cakeCustoms) cakeCustoms.style.display = 'block'; 
         } else {
             weightSection.style.display = 'none';
             document.getElementById('p-base-price').textContent = `${this.data.config.currencySymbol}${product.basePrice} per piece`;
-            if (cakeCustoms) cakeCustoms.style.display = 'none'; // Hide Message/Tag for cupcakes
+            if (cakeCustoms) cakeCustoms.style.display = 'none'; 
         }
 
         document.getElementById('opt-addons').innerHTML = product.allowedAddons.map(addonId => {
@@ -168,13 +168,15 @@ const App = {
         const baseItemPrice = product.type === 'cake' ? parseInt(weightEl.dataset.price) : product.basePrice;
         const weightLabel = product.type === 'cake' ? weightEl.value : "Standard Portion";
         
-        // Grab Custom Message and Tag (Only if it's a cake)
         let cakeMessage = "";
         let occasion = "None";
         if (product.type === 'cake') {
             cakeMessage = document.getElementById('cake-message').value.trim();
             occasion = form.querySelector('input[name="occasion"]:checked').value;
         }
+
+        // Capture Special Instructions (works for both cakes and cupcakes)
+        const specialInstructions = document.getElementById('special-instructions').value.trim();
         
         const addons = [];
         let addonsPricePerItem = 0;
@@ -194,6 +196,7 @@ const App = {
             addonsPrice: addonsPricePerItem,
             cakeMessage: cakeMessage,
             occasion: occasion,
+            specialInstructions: specialInstructions,
             qty: qty,
             total: (baseItemPrice + addonsPricePerItem) * qty,
             image: product.image
@@ -223,7 +226,8 @@ const App = {
                     <p class="ci-meta">${item.baseFormulation} ${item.productType === 'cake' ? `| ${item.weight}` : ''}</p>
                     ${item.cakeMessage ? `<p class="ci-meta" style="color: var(--clr-cocoa); font-style: italic; margin-top: 0.2rem;">✍️ "${item.cakeMessage}"</p>` : ''}
                     ${item.occasion && item.occasion !== 'None' ? `<p class="ci-meta" style="color: var(--clr-gold); margin-top: 0.2rem;">🎉 Tag: ${item.occasion}</p>` : ''}
-                    ${item.addons.length ? `<p class="ci-meta" style="margin-top: 0.2rem;">Add-ons: ${item.addons.join(', ')}</p>` : ''}
+                    ${item.addons.length ? `<p class="ci-meta" style="margin-top: 0.2rem;">Extra Toppings: ${item.addons.join(', ')}</p>` : ''}
+                    ${item.specialInstructions ? `<p class="ci-meta" style="color: #666; font-style: italic; margin-top: 0.2rem;">📝 Note: ${item.specialInstructions}</p>` : ''}
                     <p class="ci-price">${this.data.config.currencySymbol}${item.total} (Qty: ${item.qty})</p>
                 </div>
                 <button class="remove-btn" onclick="App.removeItem(${index})"><i class="fa-solid fa-xmark"></i></button>
@@ -240,19 +244,20 @@ const App = {
     updateCartBadge() { document.querySelectorAll('.cart-badge').forEach(b => b.textContent = this.cart.length); },
 
     checkoutWhatsApp(grandTotal) {
-        let msg = `Hello Manisha's Bakehouse 👋\n\nI would like to place an artisan order:\n\n`;
+        let msg = `Hello Manisha's Bakehouse 👋\n\nI would like to place an order:\n\n`;
         this.cart.forEach((item, i) => {
             msg += `*Item ${i + 1}:*\n🍰 Product: ${item.name}\n🍞 Base: ${item.baseFormulation}\n`;
             
-            // Add Cake Specifics
             if (item.productType === 'cake') {
                 msg += `⚖️ Weight: ${item.weight}\n`;
                 if (item.cakeMessage) msg += `✍️ Message on Cake: "${item.cakeMessage}"\n`;
                 if (item.occasion && item.occasion !== 'None') msg += `🎉 Occasion Tag: ${item.occasion}\n`;
             }
             
-            if (item.addons.length) msg += `🥜 Add-ons:\n- ${item.addons.join('\n- ')}\n`;
-            msg += `🔢 Quantity: ${item.qty}\n💰 Price Details:\n- Base Price: ${this.data.config.currencySymbol}${item.basePriceCombined}\n- Add-ons: ${this.data.config.currencySymbol}${item.addonsPrice}\n----------------------\n`;
+            if (item.addons.length) msg += `🥜 Extra Toppings:\n- ${item.addons.join('\n- ')}\n`;
+            if (item.specialInstructions) msg += `📝 Special Instructions: ${item.specialInstructions}\n`;
+
+            msg += `🔢 Quantity: ${item.qty}\n💰 Price Details:\n- Base Price: ${this.data.config.currencySymbol}${item.basePriceCombined}\n- Toppings: ${this.data.config.currencySymbol}${item.addonsPrice}\n----------------------\n`;
         });
         msg += `🧾 *Total Bill: ${this.data.config.currencySymbol}${grandTotal}*\n----------------------\n\nPlease confirm availability.\nThank you!`;
         window.open(`https://wa.me/${this.data.config.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
