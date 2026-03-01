@@ -1,10 +1,25 @@
+// --- THE HARD RELOAD CONTROLLER ---
+// This invisible script runs instantly. If it detects an old phone memory, 
+// it forces the phone to delete it and download the new boutique design.
+(function() {
+    const latestVersion = "7.1"; 
+    const userVersion = localStorage.getItem("mb_version");
+    
+    if (userVersion !== latestVersion) {
+        console.log("Old memory detected. Forcing cache clear...");
+        localStorage.setItem("mb_version", latestVersion);
+        window.location.href = window.location.href.split('?')[0] + '?v=' + new Date().getTime();
+    }
+})();
+// ----------------------------------
+
 const App = {
     data: null,
     cart: JSON.parse(localStorage.getItem('mb_cart')) || [],
 
     async init() {
         try {
-            const response = await fetch('data.json?v=7.0');
+            const response = await fetch('data.json?v=7.1');
             this.data = await response.json();
             this.updateCartBadge();
             this.route();
@@ -175,7 +190,6 @@ const App = {
             occasion = form.querySelector('input[name="occasion"]:checked').value;
         }
 
-        // Capture Special Instructions (works for both cakes and cupcakes)
         const specialInstructions = document.getElementById('special-instructions').value.trim();
         
         const addons = [];
